@@ -29,6 +29,13 @@ void *_list_get(struct _list_base *l, list_index_t idx)
             node = node->next;
         return (void*)(node + 1);
     }
+    else if(idx < 0 && (-idx - 1) < l->size)
+    {
+        struct _list_node *node = l->tail;
+        while(++idx)
+            node = node->prev;
+        return (void*)(node + 1);
+    }
     else
         return NULL;
 }

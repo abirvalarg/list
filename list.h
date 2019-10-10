@@ -37,6 +37,8 @@ void _list_destroy(struct _list_base *l);
 
 #define list_get(L, idx) ( (L)->ptr = _list_get(&(L)->base, (idx)) )
 
+#define list_set(L, idx, value) ( (*list_get((L), (idx))) = (value) )
+
 #define list_destroy(L) _list_destroy(&(L)->base)
 
 
