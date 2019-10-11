@@ -52,7 +52,7 @@ void *_list_get(struct _list_base *l, list_index_t idx)
     return node ? (void*)(node + 1) : NULL;
 }
 
-void _list_insert(struct _list_base *l, list_index_t idx, const void *data, size_t data_len)
+size_t _list_insert(struct _list_base *l, list_index_t idx, const void *data, size_t data_len)
 {
     struct _list_node *node = __list_get_node(l, idx);
     if(node)
@@ -67,6 +67,7 @@ void _list_insert(struct _list_base *l, list_index_t idx, const void *data, size
         memcpy((char*)(new + 1), data, data_len);
         l->size++;
     }
+    return l->size;
 }
 
 size_t _list_remove(struct _list_base *l, list_index_t idx)

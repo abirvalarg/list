@@ -14,7 +14,7 @@ $(TARGET):$(OBJ)
 	@mkdir -p $(@D)
 	$(CC) $(LFLAGS) -o $@ $^ $(addprefix -l,$(LIBS))
 
-obj/%.o: %.c
+obj/%.o: %.c $(wildcard *.h)
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) -o $@ $<
 

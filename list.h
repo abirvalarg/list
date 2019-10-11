@@ -30,7 +30,7 @@ struct _list_base
 
 size_t _list_append(struct _list_base *l, const void *data, size_t data_len);
 void *_list_get(struct _list_base *l, list_index_t idx);
-void _list_insert(struct _list_base *l, list_index_t idx, const void *data, size_t data_len);
+size_t _list_insert(struct _list_base *l, list_index_t idx, const void *data, size_t data_len);
 size_t _list_remove(struct _list_base *l, list_index_t idx);
 void _list_destroy(struct _list_base *l);
 
@@ -48,7 +48,7 @@ void _list_destroy(struct _list_base *l);
 
 #define list_get(L, idx) ( (L)->ptr = _list_get(&(L)->base, (idx)) )
 
-#define list_set(L, idx, value) ( (*list_get((L), (idx))) = (value) )
+#define list_set(L, idx, value) ( list_get(L, idx) ? (*(L)->ptr = (value), 1) : 0)
 
 #define list_insert(L, idx, value) \
     ( (L)->tmp = (value), \
