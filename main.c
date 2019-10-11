@@ -18,17 +18,29 @@ int main()
     list_insert(&lst, 1, 53);
     list_remove(&lst, -2);
 
+    printf("*** Simple funstions ***\r\n");
+
     for(list_index_t i = 0; i < lst.base.size; i++)
         printf("%d\r\n", *list_get(&lst, i));
-    printf("================================\r\n");
+    printf("***\r\n");
     
     printf("%d\r\n", *list_get(&lst, -2));
-    printf("================================\r\n");
+    printf("***\r\n");
 
     list_remove(&lst, 0);
     list_remove(&lst, -1);
     for(list_index_t i = 0; i < lst.base.size; i++)
         printf("%d\r\n", *list_get(&lst, i));
+    
+    printf("*** Copying ***\r\n");
+
+    list_int_t lst1;
+    list_copy(&lst, &lst1);
+
+    for(list_index_t i = 0; i < lst1.base.size; i++)
+        printf("%d\r\n", *list_get(&lst1, i));
+
+    list_destroy(&lst1);
 
     list_destroy(&lst);
     return 0;

@@ -2,6 +2,7 @@
 type-safe, double-linked dynamic array for C
 
 # Usage
+This is a guide for library. Full documentation is available below.
 At first you need to initialize list.
 ```c
 list_int_t lst;
@@ -44,6 +45,51 @@ To prevent memory leaks use `list_destroy` to remove all values from the list.
 ```c
 list_destroy(&lst);
 ```
+
+# Documentation
+## Functions
+All lists should be passed to function as pointers.
+### list_init
+`list_init(L)`
+
+Inializes the list. This function just fills the structure with zeros so ould be skipped. Returns same value as `memset`.
+
+### list_destroy
+`list_destroy(L)`
+
+Remove all values from the list. That function leaves trash in passed structure. Use `list_init` before using list again. Returns nothing.
+
+### list_append
+`list_append(L, value)`
+
+Puts value into the end of the list. Returns new size of the list.
+
+### list_insert
+`list_insert(L, index, value)`
+
+Puts value at given index, shifting all values after it to higher indicies. Does nothing if index isn't in the list. Returns nothing.
+
+### list_get
+`list_get(L, index)`
+
+Reads value at given index. Returns pointer to the value or NULL if index isn't in the list.
+
+### list_set
+`list_set(L, index, value)`
+
+Sets new value at given index. Returns new value.
+#### Bug
+Doesn't check if index is in the list.
+
+### list_remove
+`list_remove(L, index)`
+
+Returns value at given index from the list, shifting all values after it to lower indicies. Does nothing if index isn't in the list. Returns new size of list.
+
+### list_copy
+`list_copy(source, destination)`
+
+Copies list `source` to `destination`. List `destination` should be empty or destroyed to prevent memory leak. Returns nothing.
 
 ## Types
 Each list has its own type to store. Usually list type looks like `list_TYPE_t`. Some predefined types are in the table below.

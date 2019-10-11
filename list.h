@@ -34,6 +34,8 @@ void _list_insert(struct _list_base *l, list_index_t idx, const void *data, size
 size_t _list_remove(struct _list_base *l, list_index_t idx);
 void _list_destroy(struct _list_base *l);
 
+void _list_copy(struct _list_base *src, struct _list_base *dest, size_t data_len);
+
 #define list_t(T) struct { \
     struct _list_base base; \
     T *ptr; \
@@ -58,6 +60,10 @@ void _list_destroy(struct _list_base *l);
 
 #define list_destroy(L) _list_destroy(&(L)->base)
 
+#define list_copy(from, to) \
+    _Static_assert(sizeof((from)->tmp) == sizeof((to)->tmp), "Lists must have same value sizes"); \
+    ( list_init(to), \
+    _list_copy(&(from)->base, &(to)->base, sizeof((to)->tmp)) )
 
 typedef list_t(int) list_int_t;
 typedef list_t(char) list_char_t;

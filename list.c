@@ -102,3 +102,26 @@ void _list_destroy(struct _list_base *l)
         node = next;
     }
 }
+
+void _list_copy(struct _list_base *l, struct _list_base *dest, size_t data_len)
+{
+    struct _list_node *src = l->head;
+    struct _list_node *prev = NULL;
+    struct _list_node *new = NULL;
+    while(src)
+    {
+        new = malloc(sizeof(struct _list_node) + data_len);
+        memcpy((char*)(new + 1), (char*)(src + 1), data_len);
+        new->prev = prev;
+        new->next = NULL;
+
+        if(prev)
+            prev->next = new;
+        else
+            dest->head = new;
+        dest->size++;
+        src = src->next;
+        prev = new;
+    }
+    dest->tail = new;
+}
