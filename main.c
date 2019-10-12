@@ -2,6 +2,7 @@
 
 #include <stdio.h>
 #include "list.h"
+#include "test_functions.h"
 
 int main()
 {
@@ -41,7 +42,20 @@ int main()
         printf("%d\r\n", *list_get(&lst1, i));
 
     list_destroy(&lst1);
+    list_destroy(&lst);
 
+    list_init(&lst);
+
+    for(list_index_t i = 0; i < 10; i++)
+        list_append(&lst, i);
+
+    printf("*** Applying function ***\r\n");
+
+    list_copy(&lst, &lst1);
+    list_apply(&lst1, square_int_list);
+    list_apply(&lst1, print_int_list);
+    list_destroy(&lst1);
+    
     list_destroy(&lst);
     return 0;
 }

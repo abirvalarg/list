@@ -65,6 +65,8 @@ void _list_copy(struct _list_base *src, struct _list_base *dest, size_t data_len
     ( list_init(to), \
     _list_copy(&(from)->base, &(to)->base, sizeof((to)->tmp)) )
 
+#define list_apply(L, f) for(list_index_t i = 0; i < (L)->base.size; i++) {list_get(L, i) ? f((L)->ptr) : (void)0;}
+
 typedef list_t(int) list_int_t;
 typedef list_t(char) list_char_t;
 typedef list_t(void*) list_ptr_t;

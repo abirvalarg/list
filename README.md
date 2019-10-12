@@ -2,7 +2,7 @@
 type-safe, double-linked dynamic array for C
 
 # Usage
-This is a guide for library. Full [documentation](https://github.com/abirvalarg/list/tree/dev#documentation) is available below.
+This is a guide for library. Full [documentation](#documentation) is available below.
 At first you need to initialize list.
 ```c
 list_int_t lst;
@@ -48,7 +48,10 @@ list_destroy(&lst);
 
 # Documentation
 ## Functions
-All lists should be passed to function as pointers.
+### Some notes
+- All lists should be passed to function as pointers.
+- All functions are defined as macrosses and can't be passed as parameters to other functions.
+- Some finctions can't be called inline. Usually they returns nothing so inline calls are useless.
 ### list_init
 `list_init(L)`
 
@@ -88,6 +91,11 @@ Returns value at given index from the list, shifting all values after it to lowe
 `list_copy(source, destination)`
 
 Copies list `source` to `destination`. List `destination` should be empty or destroyed to prevent memory leak. Returns nothing.
+
+### list_apply
+`list_apply(L, function)`
+
+Calling `function` for each value in the list, passing pointers to value. Return value from `function` is ignored. Returns nothing.
 
 ## Types
 Each list has its own type to store. Usually list type looks like `list_TYPE_t`. Some predefined types are in the table below.
