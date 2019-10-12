@@ -9,8 +9,8 @@ Copyright (c) 2019 abirvalarg
 #include <stddef.h>
 #include <string.h>
 
-#define LIST_VERION 010000.L
-#define LIST_VERSION_STR "1.0.0"
+#define LIST_VERION 010100.L
+#define LIST_VERSION_STR "1.1.0"
 
 typedef long long list_index_t;
 
