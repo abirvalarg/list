@@ -2,7 +2,7 @@
 type-safe, double-linked dynamic array for C
 
 # Usage
-This is a guide for library. Full documentation is available below.
+This is a guide for library. Full [documentation](https://github.com/abirvalarg/list/tree/dev#documentation) is available below.
 At first you need to initialize list.
 ```c
 list_int_t lst;
@@ -67,7 +67,7 @@ Puts value into the end of the list. Returns new size of the list.
 ### list_insert
 `list_insert(L, index, value)`
 
-Puts value at given index, shifting all values after it to higher indicies. Does nothing if index isn't in the list. Returns nothing.
+Puts value at given index, shifting all values after it to higher indicies. Does nothing if index isn't in the list. Returns new size of list.
 
 ### list_get
 `list_get(L, index)`
@@ -78,8 +78,6 @@ Reads value at given index. Returns pointer to the value or NULL if index isn't 
 `list_set(L, index, value)`
 
 Sets new value at given index. Returns new value.
-#### Bug
-Doesn't check if index is in the list.
 
 ### list_remove
 `list_remove(L, index)`
